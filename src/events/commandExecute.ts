@@ -15,6 +15,7 @@ module.exports = {
 
 
         try {
+            await interaction.deferReply({ephemeral: command.ephemeral})
             await command.execute(interaction, Bot.client);
         } catch (error) {
             if (error) console.error(error.message);

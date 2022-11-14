@@ -21,8 +21,6 @@ module.exports = {
         .addNumberOption(paginationOption),
     ephemeral: true,
     async execute(interaction: CommandInteraction) {
-        await interaction.deferReply({ephemeral: true});
-
         const instance = new Instance();
         const commands = Commands.commands;
         const numberOfItems = commands.length;
