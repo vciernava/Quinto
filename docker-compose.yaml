@@ -12,5 +12,4 @@ services:
     environment:
       ENV_NAME: dev
     ports:
-      - 8080
-      - 8443
+      - 3333

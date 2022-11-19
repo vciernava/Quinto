@@ -36,7 +36,7 @@ module.exports = {
         await guild.members.fetch().then(members => {
             members.forEach(async member => {
                 if (member.pending === false && !member.user.bot) {
-                    await member.roles.add(config.DEFAULT_ROLES);
+                    await member.roles.add(config.DEFAULT_ROLES.split(","));
                     await interaction.editReply({embeds: [await embed("Configuring your server settings.", `${member.user.username}'s roles have been updated.`, 0xFFAE00)]});
                 }
             })

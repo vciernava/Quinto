@@ -10,15 +10,15 @@ app.get('/', (_req : express.Request, _res : express.Response) => {
                 status: "OK", 
                 message: "All services are running",
                 services: {
-                    goyasu_bot: {
+                    thukolo_bot: {
                         status: "OK",
                         message: "No errors found."
                     },
-                    goyasu_api: {
+                    thukolo_api: {
                         status: "OK",
                         message: "No errors found."
                     },
-                    goyasu_db: {
+                    thukolo_db: {
                         status: "OK",
                         message: "No errors found."
                     }

@@ -9,7 +9,6 @@ module.exports = {
     name: 'interactionCreate',
     execute: async (interaction: CommandInteraction) => {
         const command = Bot.client.commands.get(interaction.commandName);
-        console.log(command.data);
 
         if (!interaction.isCommand() || !command) return;
 
