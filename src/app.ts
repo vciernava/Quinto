@@ -9,11 +9,11 @@ import './api/app';
  *  DISCORD BOT
  */
 
-import Discord from "discord.js";
-import dotenv from "dotenv";
-import fs from "fs";
-import Commands from "./handlers/commandHandler";
-import Bot from "./handlers/botHandler";
+import Discord from 'discord.js';
+import dotenv from 'dotenv';
+import fs from 'fs';
+import Commands from './handlers/commandHandler';
+import Bot from './handlers/botHandler';
 
 
 dotenv.config();
@@ -23,7 +23,7 @@ const bot = Bot.client;
 bot.commands = new Discord.Collection();
 const commands = new Commands();
 
-const commandFiles = fs.readdirSync(__dirname + "/commands").filter(f => f.endsWith(".js"));
+const commandFiles = fs.readdirSync(__dirname + '/commands').filter(f => f.endsWith('.js'));
 for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
     console.log(`command ${file} has been registered`);
@@ -31,7 +31,7 @@ for (const file of commandFiles) {
     bot.commands.set(command.data.name, command);
 }
 
-const eventsFiles = fs.readdirSync(__dirname + "/events").filter(f => f.endsWith(".js"));
+const eventsFiles = fs.readdirSync(__dirname + '/events').filter(f => f.endsWith('.js'));
 for (const file of eventsFiles) {
     const event = require(`./events/${file}`);
     console.log(`event ${file} has been registered`);

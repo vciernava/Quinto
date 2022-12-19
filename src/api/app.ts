@@ -7,20 +7,20 @@ app.get('/', (_req : express.Request, _res : express.Response) => {
     const response = {
             code: 200, 
             system: {
-                status: "OK", 
-                message: "All services are running",
+                status: 'OK', 
+                message: 'All services are running',
                 services: {
                     thukolo_bot: {
-                        status: "OK",
-                        message: "No errors found."
+                        status: 'OK',
+                        message: 'No errors found.'
                     },
                     thukolo_api: {
-                        status: "OK",
-                        message: "No errors found."
+                        status: 'OK',
+                        message: 'No errors found.'
                     },
                     thukolo_db: {
-                        status: "OK",
-                        message: "No errors found."
+                        status: 'OK',
+                        message: 'No errors found.'
                     }
                 }
             }

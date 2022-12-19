@@ -1,5 +1,5 @@
-import {name, version, author} from "../../package.json";
-import {getLastCommit, Commit} from "git-last-commit";
+import {name, version, author} from '../../package.json';
+import {getLastCommit, Commit} from 'git-last-commit';
 
 export default class Instance {
     constructor() {
@@ -10,9 +10,9 @@ export default class Instance {
             app: name,
             version: version,
             author: author,
-            authorIcon: "https://avatars.githubusercontent.com/u/57325593?v=4",
+            authorIcon: 'https://avatars.githubusercontent.com/u/57325593?v=4',
             gitCommit: await this.getGitCommit(),
-            footer: "Developed by DarkLabs team."
+            footer: 'Developed by DarkLabs team.'
         }
     }
 

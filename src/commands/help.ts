@@ -5,19 +5,19 @@ import {
     RestOrArray,
     APIEmbedField,
     SlashCommandNumberOption
-} from "discord.js";
-import Commands from "../handlers/commandHandler";
-import Instance from "../handlers/appHandler";
+} from 'discord.js';
+import Commands from '../handlers/commandHandler';
+import Instance from '../handlers/appHandler';
 
 const paginationOption: SlashCommandNumberOption = new SlashCommandNumberOption()
-    .setName("page")
-    .setDescription("Select page")
+    .setName('page')
+    .setDescription('Select page')
     .setRequired(false);
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName("help")
-        .setDescription("Displays all available commands.")
+        .setName('help')
+        .setDescription('Displays all available commands.')
         .addNumberOption(paginationOption),
     ephemeral: true,
     async execute(interaction: CommandInteraction) {
@@ -37,7 +37,7 @@ module.exports = {
         const fields: RestOrArray<APIEmbedField> = [];
 
         if(countPages < currentPage) {
-            const field: APIEmbedField = {inline:false, name: "404 Not found", value: "There are no more commands found..."};
+            const field: APIEmbedField = {inline:false, name: '404 Not found', value: 'There are no more commands found...'};
             fields.push(field);
         }
         for (let i = startFrom; i < endAt && i < commands.length; i++) {
@@ -51,8 +51,8 @@ module.exports = {
         }
 
         const embed = new EmbedBuilder()
-            .setTitle("Need support? message me.")
-            .setDescription("All available commands:")
+            .setTitle('Need support? message me.')
+            .setDescription('All available commands:')
             .addFields(fields)
             .setFooter({text: `Page ${currentPage}/${countPages} - ${(await instance.getInstance()).footer}`})
             .setColor(0xfc0362)
