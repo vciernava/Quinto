@@ -1,4 +1,4 @@
-import Discord, {Client, Collection, Events, Routes} from "discord.js"
+import {Client, Events, Routes} from "discord.js"
 import {REST} from "@discordjs/rest";
 import dotenv from "dotenv";
 dotenv.config();

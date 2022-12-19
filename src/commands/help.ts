@@ -41,8 +41,13 @@ module.exports = {
             fields.push(field);
         }
         for (let i = startFrom; i < endAt && i < commands.length; i++) {
-            const field: APIEmbedField = {inline: true, name: commands[i].name, value: commands[i].description};
-            fields.push(field)
+            if(commands[i].default_member_permissions === undefined) {
+                const field: APIEmbedField = {inline: true, name: commands[i].name, value: commands[i].description};
+                fields.push(field);
+            } else if(interaction.memberPermissions.has(commands[i].default_member_permissions)) {
+                const field: APIEmbedField = {inline: true, name: commands[i].name, value: commands[i].description};
+                fields.push(field);
+            }
         }
 
         const embed = new EmbedBuilder()
@@ -52,6 +57,6 @@ module.exports = {
             .setFooter({text: `Page ${currentPage}/${countPages} - ${(await instance.getInstance()).footer}`})
             .setColor(0xfc0362)
             .setTimestamp();
-        await interaction.editReply({embeds: [embed]})
+        await interaction.editReply({embeds: [embed]});
     }
 }

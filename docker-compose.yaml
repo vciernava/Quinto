@@ -4,12 +4,15 @@ networks:
     external: true
 services:
   api:
+    image: Thukolo-bot
     networks:
       - api_server_default
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile 
     environment:
-      ENV_NAME: dev
+      - ENV_NAME=dev
+      - TOKEN=null
     ports:
       - 3333
+        

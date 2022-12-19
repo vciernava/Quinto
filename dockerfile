@@ -5,7 +5,6 @@ ENV ENV_NAME dev
 ENV EGG_SERVER_ENV dev
 ENV NODE_ENV dev
 ENV NODE_CONFIG_ENV dev
-ARG TOKEN
 # Create Directory for the Container
 WORKDIR /usr/thukolo
 # Only copy the package.json file to work directory
