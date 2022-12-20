@@ -1,5 +1,5 @@
 {
-  "name": "thukolo-bot",
+  "name": "quinto-bot",
   "version": "1.1.32",
   "description": "A discord bot made for server administation via commands or dashboard",
   "main": "dist/src/app.js",

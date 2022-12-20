@@ -4,7 +4,7 @@ networks:
     external: true
 services:
   api:
-    image: Thukolo-bot
+    image: Quinto-bot
     networks:
       - api_server_default
     build:

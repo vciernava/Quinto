@@ -16,8 +16,8 @@ module.exports = {
                     name: (await instance.getInstance()).author,
                     icon_url: (await instance.getInstance()).authorIcon
                 },
-                title: "Hello this is Goyasu!",
-                description: "This is a discord bot I decided to create after a few failed discord bot realizations. This discord bot is coded in TypeScript, which I choose after those failed attempts in JavaScript.\n This discord bot is created for server administration via commands or dashboard online.",
+                title: "Hello this is Quinto Bot!",
+                description: "Utility discord bot made for community and personal servers. \n*What can Quinto do?* \nAdvance server configuration, Event logs, Announcements, Support system (Currently only tickets, modmail coming soon), Server administration, Role selection, Minecraft to Discord integration (Plugin required) and more to come...",
                 fields: [
                     {
                         name: "🏁 Version",

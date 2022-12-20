@@ -12,7 +12,7 @@ export default class Instance {
             author: author,
             authorIcon: 'https://avatars.githubusercontent.com/u/57325593?v=4',
             gitCommit: await this.getGitCommit(),
-            footer: 'Developed by DarkLabs team.'
+            footer: 'Developed by Viktor Čierňava.'
         }
     }
 

@@ -36,4 +36,21 @@ export default class Bot {
             .setColor(color)
             .setTimestamp();
     }
+
+    public static currentDateMillisecondsToUUID(): string {
+        const milliseconds = Date.now().toString(18);
+        var result = '';
+
+        for (let i = 0; i < milliseconds.length; i++) {
+
+            result += milliseconds[i].toUpperCase();
+
+            if (i % 4 === 3 && i !== milliseconds.length - 1) {
+              result += '-';
+            }
+          }
+      
+
+        return `${result}`;
+      }
 }
