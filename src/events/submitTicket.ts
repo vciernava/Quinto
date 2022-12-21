@@ -15,21 +15,24 @@ module.exports = {
             const ticketCategoryChild = ticketCategory.children;
             const interactionFields = interaction.fields;
             const ticketChannel = ticketCategoryChild.create({ 
-                name: `⚫・${Bot.currentDateMillisecondsToUUID()}`,
+                name: `🟢・${Bot.currentDateMillisecondsToUUID()}`,
                 type: ChannelType.GuildText,
                 topic: interactionFields.getTextInputValue('ticketSubjectInput'),
                 permissionOverwrites: [
                     {
                         id: guild.roles.everyone,
                         deny: ['ViewChannel', 'SendMessages']
-                    },
-                    {
-                        id: config.SUPPORT_ROLE,
-                        allow: ['ViewChannel', 'SendMessages']
                     }
                 ]
-                
             });
+            if(guild.roles.cache.get(config.SUPPORT_ROLE)) {
+                (await ticketChannel).permissionOverwrites.create(config.SUPPORT_ROLE , {
+                    ViewChannel: true,
+                    SendMessages: true
+                });
+            } else {
+                await interaction.reply({embeds: [await Bot.createEmbed('Support Ticket System', `Sorry. but there was an error while submitting your ticket!\n\n Please contact bot developer about this issue.`, 0xdb6262)], ephemeral: true});
+            }
 
             (await ticketChannel).permissionOverwrites.create(ticketUser, {
                 ViewChannel: true,
@@ -40,7 +43,6 @@ module.exports = {
             })
             .catch(async () => {
                 await interaction.reply({embeds: [await Bot.createEmbed('Support Ticket System', `Sorry. but there was an error while submitting your ticket!\n\n Please contact bot developer about this issue.`, 0xdb6262)], ephemeral: true});
-                console.error
             });
         }
     }
