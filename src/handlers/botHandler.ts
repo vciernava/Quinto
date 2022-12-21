@@ -1,4 +1,4 @@
-import Discord, {Client, ColorResolvable, EmbedBuilder, GatewayIntentBits, GuildMember, User } from 'discord.js';
+import Discord, {Client, ColorResolvable, EmbedBuilder, GatewayIntentBits, GuildMember } from 'discord.js';
 import _Instance from './appHandler';
 
 export default class Bot {

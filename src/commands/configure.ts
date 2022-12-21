@@ -61,7 +61,7 @@ module.exports = {
 			);
 
         await TicketChannel.send({embeds: [
-            await Bot.createEmbed('Support Request System', 'If you require support, please press the button below.\n\n**Be Aware!**\n*If you require support outside of active hours, chances are your request will not be answered!*\n\n**Active hours:** `13:00` - `18:30` (GMT+1)', 0x14e069)
+            await Bot.createEmbed('Support Ticket System', 'If you require support, please press the button below.\n\n**Be Aware!**\n*If you require support outside of active hours, chances are your request will not be answered!*\n\n**Active hours:** `13:00` - `18:30` (GMT+1)', 0x14e069)
         ], components: [
             Row
         ]});
