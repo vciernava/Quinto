@@ -23,17 +23,26 @@ module.exports = {
     ephemeral: true,
     async execute(interaction: CommandInteraction) {
         const Client = Bot.client;
-        const Guild: Guild = Client.guilds.resolve(interaction.guildId);
+        const Guild: Guild = interaction.guild;
+        const defaultRoles = config.DEFAULT_ROLES.split(',');
 
         /* Checking and Updating User Roles to Default Values */
-        await Guild.members.fetch().then(members => {
-            members.forEach(async member => {
-                if (member.pending === false && !member.user.bot && !config.DEFAULT_ROLES.split(',').every(role => member.roles.cache.has(role))) {
-                    await member.roles.add(config.DEFAULT_ROLES.split(','));
-                    await interaction.editReply({embeds: [await Bot.createEmbed('Configuring your server settings.', `${member.user.username}'s roles have been updated.`, 0x2d92ff)]});
-                }
+        try {
+            defaultRoles.forEach(role => {
+                if(!Guild.roles.cache.get(role)) throw Error;
+
+                Guild.members.fetch().then(members => {
+                    members.forEach(async member => {
+                        if (member.pending === false && !member.user.bot && !member.roles.cache.has(role)) {
+                            await member.roles.add(role);
+                            await interaction.editReply({embeds: [await Bot.createEmbed('Configuring your server settings.', `${member.user.username}'s roles have been updated.`, 0x74309d)]});
+                        }
+                    });
+                });
             });
-        });
+        } catch {
+            await interaction.editReply({embeds: [await Bot.createEmbed('Configuring your server settings.', `Oh no! Seems like one of the default roles does not exist!`, 0xdb6262)]});
+        };
 
         /* Clearing Ticket Action Button Message !(if exists) */
         const TicketChannel : TextChannel = Client.channels.resolve(config.TICKETS_GENERAL_ID) as TextChannel;

@@ -1,9 +1,9 @@
-
-
-/*
- *  API
- */
-import './api/app';
+/* COLOR PALLETE
+ * Quinto's Purple      0x74309d
+ * Quinto's Primary     0x2d92ff
+ * Quinto's Sucessfull  0x14e069
+ * Quinto's Alert       0xdb6262
+*/
 
 /*
  *  DISCORD BOT

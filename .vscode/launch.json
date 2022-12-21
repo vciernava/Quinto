@@ -7,19 +7,6 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Watch Program",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "program": "${workspaceFolder}\\dist\\src\\app.js",
-            "preLaunchTask": "tsc: watch - tsconfig.json",
-            "outFiles": [
-                "${workspaceFolder}/dist/**/*.js"
-            ]
-        },
-        {
-            "type": "node",
-            "request": "launch",
             "name": "Start Program",
             "skipFiles": [
                 "<node_internals>/**"

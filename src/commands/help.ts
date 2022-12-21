@@ -55,7 +55,7 @@ module.exports = {
             .setDescription('All available commands:')
             .addFields(fields)
             .setFooter({text: `Page ${currentPage}/${countPages} - ${(await instance.getInstance()).footer}`})
-            .setColor(0xfc0362)
+            .setColor(0x74309d)
             .setTimestamp();
         await interaction.editReply({embeds: [embed]});
     }

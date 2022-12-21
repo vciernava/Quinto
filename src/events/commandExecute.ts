@@ -21,7 +21,7 @@ module.exports = {
             await interaction.editReply({
                 embeds: [
                     {
-                        color: 0xe69737,
+                        color: 0xdb6262,
                         title: "Oh no...",
                         description: `there has been an error during processing the request.`,
                         timestamp: new Date().toISOString(),

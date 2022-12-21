@@ -11,13 +11,13 @@ module.exports = {
 
         await interaction.editReply({
             embeds: [{
-                color: 0xfc0362,
+                color: 0x74309d,
                 author: {
                     name: (await instance.getInstance()).author,
                     icon_url: (await instance.getInstance()).authorIcon
                 },
                 title: "Hello this is Quinto Bot!",
-                description: "Utility discord bot made for community and personal servers. \n*What can Quinto do?* \nAdvance server configuration, Event logs, Announcements, Support system (Currently only tickets, modmail coming soon), Server administration, Role selection, Minecraft to Discord integration (Plugin required) and more to come...",
+                description: "Utility discord bot made for community and personal servers. \n\n*What can Quinto do?* \nAdvance server configuration, Event logs, Announcements, Support system (Currently only tickets, modmail coming soon), Server administration, Role selection, Minecraft to Discord integration (Plugin required) and more to come...",
                 fields: [
                     {
                         name: "🏁 Version",
