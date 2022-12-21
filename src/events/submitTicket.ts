@@ -9,7 +9,7 @@ module.exports = {
     name: 'interactionCreate',
     execute: async (interaction: ModalSubmitInteraction) => {
         if(interaction.isModalSubmit && interaction.customId === 'SubmitTicket') {
-            const guild: Guild = interaction.client.guilds.resolve(interaction.guildId);
+            const guild: Guild = interaction.guild;
             const ticketUser = interaction.member as GuildMember;
             const ticketCategory = guild.channels.resolve(config.TICKETS_ID) as CategoryChannel;
             const ticketCategoryChild = ticketCategory.children;
