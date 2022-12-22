@@ -8,16 +8,29 @@ import {
 } from 'discord.js';
 import Commands from '../handlers/commandHandler';
 import Instance from '../handlers/appHandler';
+import lang from '../lang/cs.json';
 
 const paginationOption: SlashCommandNumberOption = new SlashCommandNumberOption()
     .setName('page')
-    .setDescription('Select page')
+    .setNameLocalizations({
+        'cs': 'stránka'
+    })
+    .setDescription('Select page number')
+    .setDescriptionLocalizations({
+        'cs': 'Vyberte číslo stránky'
+    })
     .setRequired(false);
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('help')
-        .setDescription('Displays all available commands.')
+        .setNameLocalizations({
+            'cs': 'pomoc'
+        })
+        .setDescription('Display of all available commands.')
+        .setDescriptionLocalizations({
+            'cs': 'Zobrazení všech dostupných příkazů.'
+        })
         .addNumberOption(paginationOption),
     ephemeral: true,
     async execute(interaction: CommandInteraction) {
@@ -37,7 +50,7 @@ module.exports = {
         const fields: RestOrArray<APIEmbedField> = [];
 
         if(countPages < currentPage) {
-            const field: APIEmbedField = {inline:false, name: '404 Not found', value: 'There are no more commands found...'};
+            const field: APIEmbedField = {inline:false, name: lang['404 Not found'], value: lang['There are no more commands found...']};
             fields.push(field);
         }
         for (let i = startFrom; i < endAt && i < commands.length; i++) {
@@ -51,11 +64,11 @@ module.exports = {
         }
 
         const embed = new EmbedBuilder()
-            .setTitle('Need support? message me.')
-            .setDescription('All available commands:')
+            .setTitle(lang['Need support? Message me.'])
+            .setDescription(lang['All available commands:'])
             .addFields(fields)
-            .setFooter({text: `Page ${currentPage}/${countPages} - ${(await instance.getInstance()).footer}`})
-            .setColor(0x74309d)
+            .setFooter({text: `${lang.Page} ${currentPage}/${countPages} - ${(await instance.getInstance()).footer}`})
+            .setColor(0x3399ff)
             .setTimestamp();
         await interaction.editReply({embeds: [embed]});
     }

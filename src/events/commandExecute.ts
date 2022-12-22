@@ -1,6 +1,7 @@
-import {CommandInteraction} from "discord.js";
-import Bot from "../handlers/botHandler";
-import dotenv from "dotenv";
+import {CommandInteraction} from 'discord.js';
+import Bot from '../handlers/botHandler';
+import dotenv from 'dotenv';
+import lang from '../lang/cs.json';
 
 dotenv.config();
 const config = process.env;
@@ -22,8 +23,8 @@ module.exports = {
                 embeds: [
                     {
                         color: 0xdb6262,
-                        title: "Oh no...",
-                        description: `there has been an error during processing the request.`,
+                        title: lang['Oh no...'],
+                        description: lang['There has been an error during processing the request.'],
                         timestamp: new Date().toISOString(),
                     },
                 ]

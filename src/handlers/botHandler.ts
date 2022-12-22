@@ -1,4 +1,4 @@
-import Discord, {Client, ColorResolvable, EmbedBuilder, GatewayIntentBits, GuildMember } from 'discord.js';
+import Discord, {ButtonBuilder, ButtonStyle, Client, ColorResolvable, EmbedBuilder, Emoji, GatewayIntentBits, GuildEmoji, GuildMember } from 'discord.js';
 import _Instance from './appHandler';
 
 export default class Bot {
@@ -35,6 +35,14 @@ export default class Bot {
             .setFooter({text: (await Instance.getInstance()).footer})
             .setColor(color)
             .setTimestamp();
+    }
+
+    public static createButton = (customID: string, label: string, style: ButtonStyle, emoji: string) => {
+        return new ButtonBuilder()
+            .setCustomId(customID)
+            .setLabel(label)
+            .setStyle(style)
+            .setEmoji(emoji)
     }
 
     public static currentDateMillisecondsToUUID(): string {

@@ -11,6 +11,7 @@ import {
 import dotenv from 'dotenv';
 import Bot from '../handlers/botHandler';
 import _Instance from '../handlers/appHandler';
+import lang from '../lang/cs.json';
 
 dotenv.config();
 const config = process.env;
@@ -18,7 +19,13 @@ const config = process.env;
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('configure')
-        .setDescription('Command for automatic configuration.')
+        .setNameLocalizations({
+            'cs': 'konfigurace'
+        })
+        .setDescription('Automatic server configuration.')
+        .setDescriptionLocalizations({
+            'cs': 'Automatická konfigurace serveru.'
+        })
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
     ephemeral: true,
     async execute(interaction: CommandInteraction) {
@@ -35,13 +42,13 @@ module.exports = {
                     members.forEach(async member => {
                         if (member.pending === false && !member.user.bot && !member.roles.cache.has(role)) {
                             await member.roles.add(role);
-                            await interaction.editReply({embeds: [await Bot.createEmbed('Configuring your server settings.', `${member.user.username}'s roles have been updated.`, 0x74309d)]});
+                            await interaction.editReply({embeds: [await Bot.createEmbed(lang['Configuring your server settings.'], `${member.user.username}${lang['\'s roles have been updated.']}`, 0x3399ff)]});
                         }
                     });
                 });
             });
         } catch {
-            await interaction.editReply({embeds: [await Bot.createEmbed('Configuring your server settings.', `Oh no! Seems like one of the default roles does not exist!`, 0xdb6262)]});
+            await interaction.editReply({embeds: [await Bot.createEmbed(lang['Configuring your server settings.'], lang['Oh no! Seems like one of the default roles does not exist.'], 0xdb6262)]});
         };
 
         /* Clearing Ticket Action Button Message !(if exists) */
@@ -54,21 +61,18 @@ module.exports = {
         /* Creating Ticket Action Button */
         const Row = new ActionRowBuilder<ButtonBuilder>()
 			.addComponents(
-				new ButtonBuilder()
-					.setCustomId('CreateTicket')
-					.setLabel('Create Ticket')
-					.setStyle(ButtonStyle.Success),
+                Bot.createButton('CreateTicket', lang['Create Ticket'], ButtonStyle.Primary, '📩')
 			);
 
         await TicketChannel.send({embeds: [
-            await Bot.createEmbed('Support Ticket System', 'If you require support, please press the button below.\n\n**Be Aware!**\n*If you require support outside of active hours, chances are your request will not be answered!*\n\n**Active hours:** `13:00` - `18:30` (GMT+1)', 0x14e069)
+            await Bot.createEmbed(lang['Support System'], 'If you require support, please press the button below.\n\n**Be Aware!**\n*If you require support outside of active hours, chances are your request will not be answered!*\n\n**Active hours:** `13:00` - `18:30` (GMT+1)', 0x3399ff)
         ], components: [
             Row
         ]});
         
         /* Sending confirmation message when configuration is done */
         setTimeout(async () => {
-            await interaction.editReply({embeds: [await Bot.createEmbed('Server is ready to use.', 'The new configuration has been successfully applied. ', 0x14e069)]});
+            await interaction.editReply({embeds: [await Bot.createEmbed(lang['Server is ready to use.'], lang['The new configuration has been successfully applied.'], 0x14e069)]});
         }, 500);
     }
 }

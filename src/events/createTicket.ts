@@ -1,5 +1,6 @@
 import {ActionRowBuilder, ButtonInteraction, ModalBuilder, TextInputBuilder, TextInputStyle} from 'discord.js';
 import dotenv from 'dotenv';
+import lang from '../lang/cs.json';
 
 dotenv.config();
 const config = process.env;
@@ -9,17 +10,17 @@ module.exports = {
     execute: async (interaction: ButtonInteraction) => {
         const Modal = new ModalBuilder()
             .setCustomId('SubmitTicket')
-            .setTitle('Support Request Submission');
+            .setTitle(lang['Support System']);
 
         const subjectInput = new TextInputBuilder()
             .setCustomId('ticketSubjectInput')
-            .setLabel('Ticket subject')
+            .setLabel(lang['Ticket subject'])
             .setStyle(TextInputStyle.Short)
-            .setRequired(true);;
+            .setRequired(true);
 
         const descriptionInput = new TextInputBuilder()
 			.setCustomId('ticketDescriptionInput')
-			.setLabel('Describe your problem')
+			.setLabel(lang['Describe your problem'])
 			.setStyle(TextInputStyle.Paragraph)
             .setRequired(true);
 
