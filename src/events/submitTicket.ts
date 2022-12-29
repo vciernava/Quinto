@@ -1,4 +1,4 @@
-import {ActionRowBuilder, ButtonBuilder, ButtonStyle, CategoryChannel, ChannelType, Emoji, Guild, GuildEmoji, GuildMember, ModalSubmitInteraction} from 'discord.js';
+import {ActionRowBuilder, ButtonBuilder, ButtonStyle, CategoryChannel, ChannelType, Guild, GuildMember, ModalSubmitInteraction} from 'discord.js';
 import Bot from '../handlers/botHandler';
 import dotenv from 'dotenv';
 import lang from '../lang/cs.json';
@@ -12,7 +12,7 @@ module.exports = {
         if(interaction.isModalSubmit && interaction.customId === 'SubmitTicket') {
             const guild: Guild = interaction.guild;
             const ticketUser = interaction.member as GuildMember;
-            const ticketCategory = guild.channels.resolve(config.TICKETS_ID) as CategoryChannel;
+            const ticketCategory = guild.channels.resolve(config.TICKETS_CATEGORY_ID) as CategoryChannel;
             const ticketCategoryChild = ticketCategory.children;
             const interactionFields = interaction.fields;
             const ticketChannel = ticketCategoryChild.create({ 

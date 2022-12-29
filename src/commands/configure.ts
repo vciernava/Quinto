@@ -52,7 +52,7 @@ module.exports = {
         };
 
         /* Clearing Ticket Action Button Message !(if exists) */
-        const TicketChannel : TextChannel = Client.channels.resolve(config.TICKETS_GENERAL_ID) as TextChannel;
+        const TicketChannel : TextChannel = Client.channels.resolve(config.TICKETS_CREATION_ID) as TextChannel;
 
         if(TicketChannel) {
             TicketChannel.bulkDelete(1).catch(console.error);

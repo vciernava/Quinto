@@ -13,6 +13,8 @@ export default class Bot {
             ]
         }
     );
+    
+    public static setActivity = (message: string, type: Discord.ActivityType.Playing | Discord.ActivityType.Streaming | Discord.ActivityType.Listening | Discord.ActivityType.Watching | Discord.ActivityType.Competing) => this.client.user.setActivity(message, {type: type});
 
     public static createEmbed = async (title: string, message: string, color: ColorResolvable) => {
         const Instance = new _Instance();
