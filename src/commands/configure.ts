@@ -7,11 +7,14 @@ import {
     ActionRowBuilder,
     ButtonBuilder,
     ButtonStyle,
+    ChannelType,
+    BaseGuildVoiceChannel,
 } from 'discord.js';
 import dotenv from 'dotenv';
 import Bot from '../handlers/botHandler';
 import _Instance from '../handlers/appHandler';
 import lang from '../lang/cs.json';
+import {db} from '../handlers/databaseHandler';
 
 dotenv.config();
 const config = process.env;
@@ -69,6 +72,45 @@ module.exports = {
         ], components: [
             Row
         ]});
+
+        /* Creating guild population channel */
+        var queryString = 'SELECT user_count FROM guilds WHERE guild_id = ?';
+        const [user_count] = await db.promise().query(queryString, Guild.id);
+
+        if(user_count[0]['user_count']) {
+            queryString = 'SELECT user_count_id FROM guilds WHERE guild_id = ?';
+            const [user_count_id] = await db.promise().query(queryString, Guild.id);
+
+            const user_count_channel = Guild.channels.resolve(user_count_id[0]['user_count_id']);
+
+            if(user_count_channel === null || user_count_id[0]['user_count_id'] === null) {
+                queryString = 'UPDATE guilds SET user_count_id = ? WHERE guild_id = ?';
+                Guild.channels.create({ 
+                    name:`📊﹕${Guild.memberCount} Members`, 
+                    type: ChannelType.GuildVoice, 
+                    permissionOverwrites: [
+                        {
+                            id: Guild.roles.everyone, 
+                            deny: [
+                                PermissionFlagsBits.Connect, 
+                                PermissionFlagsBits.SendMessages
+                            ]
+                        }
+                    ] 
+                }).then((channel) => {
+                    db.query(queryString, [channel.id, Guild.id], async (err) => {
+                        if (err) {console.error(err)};
+
+                        await interaction.editReply({embeds: [await Bot.createEmbed(lang['Configuring your server settings.'], lang['Creating user count channel.'], 0x3399ff)]});
+                    });
+                });
+            } else {
+                user_count_channel.setName(`📊﹕${Guild.memberCount} Members`);
+            }
+        } else {
+            
+        }
+        
         
         /* Sending confirmation message when configuration is done */
         setTimeout(async () => {
